@@ -3,7 +3,7 @@ import { StellarWalletsKit } from '@creit.tech/stellar-wallets-kit';
 import { callSorobanContract, readSorobanContract, toScValString, toScValAddress } from '../utils/sorobanHelpers';
 import { xdr } from 'stellar-sdk';
 
-const IDENTITY_REGISTRY_CONTRACT = import.meta.env.VITE_IDENTITY_REGISTRY_CONTRACT || '';
+const IDENTITY_REGISTRY_CONTRACT = (import.meta as any).env?.VITE_IDENTITY_REGISTRY_CONTRACT || '';
 
 export interface Identity {
   ipfsCid: string;

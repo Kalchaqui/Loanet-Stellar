@@ -5,7 +5,7 @@ import {
   allowAllModules
 } from '@creit.tech/stellar-wallets-kit';
 
-const NETWORK = import.meta.env.VITE_STELLAR_NETWORK || 'testnet';
+const NETWORK = (import.meta as any).env?.VITE_STELLAR_NETWORK || 'testnet';
 
 export function useWallet() {
   const [kit, setKit] = useState<StellarWalletsKit | null>(null);

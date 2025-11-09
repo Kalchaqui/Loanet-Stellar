@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { useLoanManager } from '../hooks/useLoanManager';
 import { useWalletContext } from '../contexts/WalletContext';
 import LoanetSection from './LoanetSection';
@@ -6,7 +6,7 @@ import './LoanManagerSection.css';
 
 export default function LoanManagerSection() {
   const { kit, connected, address } = useWalletContext();
-  const { loan, loading, requestLoan, payInstallment, refresh } = useLoanManager(
+  const { loan, loading, requestLoan, payInstallment } = useLoanManager(
     kit,
     connected,
     address

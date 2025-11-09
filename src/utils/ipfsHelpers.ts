@@ -18,7 +18,7 @@ export async function uploadToIPFS(file: File): Promise<string> {
   let hash = 'Qm';
   
   // Use file name and size to generate a somewhat deterministic hash
-  const fileData = `${file.name}_${file.size}_${Date.now()}`;
+  // const fileData = `${file.name}_${file.size}_${Date.now()}`;
   for (let i = 0; i < 44; i++) {
     hash += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
   }
@@ -53,9 +53,9 @@ export async function uploadPersonalDataToIPFS(data: {
   // Simulate network delay
   await new Promise(resolve => setTimeout(resolve, 1500));
   
-  // Create JSON blob
-  const jsonData = JSON.stringify(data, null, 2);
-  const blob = new Blob([jsonData], { type: 'application/json' });
+  // Create JSON blob (commented for now, will be used when integrating real IPFS)
+  // const jsonData = JSON.stringify(data, null, 2);
+  // const blob = new Blob([jsonData], { type: 'application/json' });
   
   // Generate a mock IPFS hash/CID based on data content
   // In production, this would be the actual CID returned by the IPFS service
@@ -63,7 +63,7 @@ export async function uploadPersonalDataToIPFS(data: {
   let cid = 'Qm';
   
   // Use data content to generate a somewhat deterministic hash
-  const dataString = `${data.wallet}_${data.dni}_${data.email}_${Date.now()}`;
+  // const dataString = `${data.wallet}_${data.dni}_${data.email}_${Date.now()}`;
   for (let i = 0; i < 44; i++) {
     cid += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
   }

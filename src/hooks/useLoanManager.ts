@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { StellarWalletsKit } from '@creit.tech/stellar-wallets-kit';
 import { callSorobanContract, readSorobanContract, toScValAddress, toScValI128, toScValU32 } from '../utils/sorobanHelpers';
-import { xdr } from 'stellar-sdk';
 
-const LOAN_MANAGER_CONTRACT = import.meta.env.VITE_LOAN_MANAGER_CONTRACT || '';
+const LOAN_MANAGER_CONTRACT = (import.meta as any).env?.VITE_LOAN_MANAGER_CONTRACT || '';
 
 export interface Loan {
   borrower: string;

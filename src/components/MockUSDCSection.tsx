@@ -1,4 +1,3 @@
-import React from 'react';
 import { useMockUSDC } from '../hooks/useMockUSDC';
 import { useWalletContext } from '../contexts/WalletContext';
 import LoanetSection from './LoanetSection';
@@ -6,7 +5,7 @@ import './MockUSDCSection.css';
 
 export default function MockUSDCSection() {
   const { kit, connected, address } = useWalletContext();
-  const { balance, loading, faucet, refresh } = useMockUSDC(
+  const { balance, loading, faucet } = useMockUSDC(
     kit,
     connected,
     address

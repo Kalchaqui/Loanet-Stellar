@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { StellarWalletsKit } from '@creit.tech/stellar-wallets-kit';
 import { callSorobanContract, readSorobanContract, toScValAddress, toScValI128 } from '../utils/sorobanHelpers';
-import { xdr } from 'stellar-sdk';
 
-const MOCK_USDC_CONTRACT = import.meta.env.VITE_MOCK_USDC_CONTRACT || '';
+const MOCK_USDC_CONTRACT = (import.meta as any).env?.VITE_MOCK_USDC_CONTRACT || '';
 
 export function useMockUSDC(kit: StellarWalletsKit | null, connected: boolean, address: string | null) {
   const [balance, setBalance] = useState<number>(0);

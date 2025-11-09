@@ -1,4 +1,3 @@
-import React from 'react';
 import { useCreditScoring } from '../hooks/useCreditScoring';
 import { useWalletContext } from '../contexts/WalletContext';
 import LoanetSection from './LoanetSection';
@@ -6,7 +5,7 @@ import './CreditScoreSection.css';
 
 export default function CreditScoreSection() {
   const { kit, connected, address } = useWalletContext();
-  const { creditScore, loading, initializeUser, refresh } = useCreditScoring(
+  const { creditScore, loading, initializeUser } = useCreditScoring(
     kit,
     connected,
     address

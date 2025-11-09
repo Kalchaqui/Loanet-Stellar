@@ -7,7 +7,7 @@ import LoanManagerSection from './components/LoanManagerSection';
 import './App.css';
 
 function App() {
-  const { kit, connected, address, connect, disconnect, initError } = useWalletContext();
+  const { connected, address, connect, disconnect, initError } = useWalletContext();
 
   return (
     <div className="app">

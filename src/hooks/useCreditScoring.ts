@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { StellarWalletsKit } from '@creit.tech/stellar-wallets-kit';
-import { callSorobanContract, readSorobanContract, toScValAddress, toScValI128 } from '../utils/sorobanHelpers';
-import { xdr } from 'stellar-sdk';
+import { callSorobanContract, readSorobanContract, toScValAddress } from '../utils/sorobanHelpers';
 
-const CREDIT_SCORING_CONTRACT = import.meta.env.VITE_CREDIT_SCORING_CONTRACT || '';
+const CREDIT_SCORING_CONTRACT = (import.meta as any).env?.VITE_CREDIT_SCORING_CONTRACT || '';
 
 export interface CreditScore {
   score: number;

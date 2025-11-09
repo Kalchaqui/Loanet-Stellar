@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useIdentityRegistry } from '../hooks/useIdentityRegistry';
 import { useWalletContext } from '../contexts/WalletContext';
 import { uploadToIPFS, uploadPersonalDataToIPFS } from '../utils/ipfsHelpers';
@@ -7,7 +7,7 @@ import './IdentitySection.css';
 
 export default function IdentitySection() {
   const { kit, connected, address } = useWalletContext();
-  const { identity, hasIdentity, loading, createIdentity, refresh } = useIdentityRegistry(
+  const { identity, hasIdentity, loading, createIdentity } = useIdentityRegistry(
     kit,
     connected,
     address
@@ -36,7 +36,7 @@ export default function IdentitySection() {
   const backInputRef = useRef<HTMLInputElement>(null);
 
   // Check if contract is configured
-  const IDENTITY_REGISTRY_CONTRACT = import.meta.env.VITE_IDENTITY_REGISTRY_CONTRACT || '';
+  const IDENTITY_REGISTRY_CONTRACT = (import.meta as any).env?.VITE_IDENTITY_REGISTRY_CONTRACT || '';
   const contractConfigured = IDENTITY_REGISTRY_CONTRACT.trim() !== '';
 
   const handleFrontImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {

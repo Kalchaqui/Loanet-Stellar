@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ReactNode } from 'react';
+import { createContext, useContext, ReactNode } from 'react';
 import { StellarWalletsKit } from '@creit.tech/stellar-wallets-kit';
 import { useWallet } from '../hooks/useWallet';
 
