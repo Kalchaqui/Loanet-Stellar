@@ -66,56 +66,56 @@ export default function IdentitySection() {
   const handleCreateIdentity = async () => {
     // Validate all inputs
     if (!dni.trim()) {
-      alert('Por favor ingresa tu DNI');
+      alert('Please enter your ID number');
       return;
     }
     if (!nombre.trim()) {
-      alert('Por favor ingresa tu nombre');
+      alert('Please enter your first name');
       return;
     }
     if (!apellido.trim()) {
-      alert('Por favor ingresa tu apellido');
+      alert('Please enter your last name');
       return;
     }
     if (!fechaNacimiento) {
-      alert('Por favor ingresa tu fecha de nacimiento');
+      alert('Please enter your date of birth');
       return;
     }
     if (!direccion.trim()) {
-      alert('Por favor ingresa tu dirección');
+      alert('Please enter your address');
       return;
     }
     if (!pais.trim()) {
-      alert('Por favor ingresa tu país');
+      alert('Please enter your country');
       return;
     }
     if (!ciudad.trim()) {
-      alert('Por favor ingresa tu ciudad');
+      alert('Please enter your city');
       return;
     }
     if (!email.trim()) {
-      alert('Por favor ingresa tu email');
+      alert('Please enter your email');
       return;
     }
     if (!telefono.trim()) {
-      alert('Por favor ingresa tu teléfono');
+      alert('Please enter your phone number');
       return;
     }
     if (!frontImage) {
-      alert('Por favor selecciona la imagen del DNI (frente)');
+      alert('Please select the ID image (front)');
       return;
     }
     if (!backImage) {
-      alert('Por favor selecciona la imagen del DNI (dorso)');
+      alert('Please select the ID image (back)');
       return;
     }
     if (!address) {
-      alert('Error: Dirección de wallet no disponible');
+      alert('Error: Wallet address not available');
       return;
     }
 
     if (!contractConfigured) {
-      alert('Error: El contrato IdentityRegistry no está configurado. Por favor configura VITE_IDENTITY_REGISTRY_CONTRACT en tu archivo .env');
+      alert('Error: IdentityRegistry contract is not configured. Please configure VITE_IDENTITY_REGISTRY_CONTRACT in your .env file');
       return;
     }
 
@@ -174,14 +174,14 @@ export default function IdentitySection() {
       setShowRegisterForm(false);
       
       // Show success message
-      alert('✅ Identidad creada exitosamente');
+      alert('✅ Identity created successfully');
     } catch (error: any) {
       console.error('Error creating identity:', error);
-      const errorMessage = error?.message || 'Error al crear la identidad';
+      const errorMessage = error?.message || 'Error creating identity';
       
       // Provide more helpful error messages
       if (errorMessage.includes('rechazada') || errorMessage.includes('rejected')) {
-        alert('⚠️ La transacción fue rechazada.\n\nPor favor:\n1. Asegúrate de hacer clic en "Confirm" o "Aceptar" en el modal de Freighter\n2. NO hagas clic en "Cancel" o "Rechazar"\n3. Espera a que se complete la firma\n\nIntenta de nuevo.');
+        alert('⚠️ The transaction was rejected.\n\nPlease:\n1. Make sure to click "Confirm" or "Accept" in the Freighter modal\n2. Do NOT click "Cancel" or "Reject"\n3. Wait for the signature to complete\n\nTry again.');
       } else {
         alert(`Error: ${errorMessage}`);
       }
@@ -197,29 +197,29 @@ export default function IdentitySection() {
   // If user is already registered, show their info
   if (hasIdentity && identity) {
     return (
-      <LoanetSection title="🔐 Identidad Digital">
+      <LoanetSection title="🔐 Digital Identity">
         <div className="identity-info">
           <div className="info-row">
             <span className="label">IPFS CID:</span>
             <span className="value hash">{identity.ipfsCid}</span>
           </div>
           <div className="info-row">
-            <span className="label">Nivel de Verificación:</span>
+            <span className="label">Verification Level:</span>
             <span className="value">{identity.verificationLevel}/3</span>
           </div>
           <div className="info-row">
-            <span className="label">Estado:</span>
+            <span className="label">Status:</span>
             <span className={`value ${identity.verified ? 'verified' : 'unverified'}`}>
-              {identity.verified ? '✅ Verificado' : '⏳ Pendiente'}
+              {identity.verified ? '✅ Verified' : '⏳ Pending'}
             </span>
           </div>
           <div className="info-row">
-            <span className="label">Fecha de Registro:</span>
+            <span className="label">Registration Date:</span>
             <span className="value">{new Date(identity.createdAt * 1000).toLocaleDateString()}</span>
           </div>
           <p className="help-text">
-            💡 Tus datos personales están almacenados de forma segura en IPFS.
-            Accede a ellos usando el CID proporcionado.
+            💡 Your personal data is securely stored on IPFS.
+            Access it using the provided CID.
           </p>
         </div>
       </LoanetSection>
@@ -228,17 +228,17 @@ export default function IdentitySection() {
 
   // If not registered, show register button or form
   return (
-    <LoanetSection title="🔐 Identidad Digital">
+    <LoanetSection title="🔐 Digital Identity">
       {!showRegisterForm ? (
         <div className="identity-register-prompt">
           {!contractConfigured && (
             <div className="error-banner">
-              ⚠️ El contrato IdentityRegistry no está configurado. Por favor configura VITE_IDENTITY_REGISTRY_CONTRACT en tu archivo .env
+              ⚠️ The IdentityRegistry contract is not configured. Please configure VITE_IDENTITY_REGISTRY_CONTRACT in your .env file
             </div>
           )}
           <p className="description">
-            Para acceder al sistema de préstamos, necesitas registrarte con tu identidad digital verificada.
-            Todos tus datos sensibles se almacenarán de forma segura en IPFS, y solo se guardará un hash en la blockchain.
+            To access the lending system, you need to register with your verified digital identity.
+            All your sensitive data will be securely stored on IPFS, and only a hash will be saved on the blockchain.
           </p>
           <button
             onClick={() => setShowRegisterForm(true)}
@@ -249,28 +249,28 @@ export default function IdentitySection() {
               cursor: hasIdentity ? 'not-allowed' : 'pointer',
             }}
           >
-            {hasIdentity ? 'Ya Registrado' : 'Registrarse'}
+            {hasIdentity ? 'Already Registered' : 'Register'}
           </button>
           {!contractConfigured && (
             <p className="help-text" style={{ marginTop: '12px', color: '#f59e0b' }}>
-              ⚠️ Nota: Necesitas configurar VITE_IDENTITY_REGISTRY_CONTRACT en tu archivo .env para poder crear la identidad
+              ⚠️ Note: You need to configure VITE_IDENTITY_REGISTRY_CONTRACT in your .env file to create an identity
             </p>
           )}
         </div>
       ) : (
         <div className="identity-create">
           <div className="form-header">
-            <h3>Registro de Identidad Digital</h3>
+            <h3>Digital Identity Registration</h3>
             <button
               onClick={() => setShowRegisterForm(false)}
               className="btn-link"
             >
-              ← Cancelar
+              ← Cancel
             </button>
           </div>
 
           <div className="form-group">
-            <label htmlFor="wallet">Wallet (Dirección)</label>
+            <label htmlFor="wallet">Wallet (Address)</label>
             <input
               id="wallet"
               type="text"
@@ -278,16 +278,16 @@ export default function IdentitySection() {
               disabled
               className="input input-disabled"
             />
-            <small className="help-text">Esta es tu dirección de wallet conectada</small>
+            <small className="help-text">This is your connected wallet address</small>
           </div>
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="dni">DNI *</label>
+              <label htmlFor="dni">ID Number *</label>
               <input
                 id="dni"
                 type="text"
-                placeholder="Número de DNI"
+                placeholder="ID Number"
                 value={dni}
                 onChange={(e) => setDni(e.target.value)}
                 className="input"
@@ -297,7 +297,7 @@ export default function IdentitySection() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="fecha-nacimiento">Fecha de Nacimiento *</label>
+              <label htmlFor="fecha-nacimiento">Date of Birth *</label>
               <input
                 id="fecha-nacimiento"
                 type="date"
@@ -311,11 +311,11 @@ export default function IdentitySection() {
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="nombre">Nombre *</label>
+              <label htmlFor="nombre">First Name *</label>
               <input
                 id="nombre"
                 type="text"
-                placeholder="Nombre"
+                placeholder="First Name"
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
                 className="input"
@@ -324,11 +324,11 @@ export default function IdentitySection() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="apellido">Apellido *</label>
+              <label htmlFor="apellido">Last Name *</label>
               <input
                 id="apellido"
                 type="text"
-                placeholder="Apellido"
+                placeholder="Last Name"
                 value={apellido}
                 onChange={(e) => setApellido(e.target.value)}
                 className="input"
@@ -338,11 +338,11 @@ export default function IdentitySection() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="direccion">Dirección *</label>
+            <label htmlFor="direccion">Address *</label>
             <input
               id="direccion"
               type="text"
-              placeholder="Dirección completa"
+              placeholder="Full Address"
               value={direccion}
               onChange={(e) => setDireccion(e.target.value)}
               className="input"
@@ -352,11 +352,11 @@ export default function IdentitySection() {
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="pais">País *</label>
+              <label htmlFor="pais">Country *</label>
               <input
                 id="pais"
                 type="text"
-                placeholder="País"
+                placeholder="Country"
                 value={pais}
                 onChange={(e) => setPais(e.target.value)}
                 className="input"
@@ -365,11 +365,11 @@ export default function IdentitySection() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="ciudad">Ciudad *</label>
+              <label htmlFor="ciudad">City *</label>
               <input
                 id="ciudad"
                 type="text"
-                placeholder="Ciudad"
+                placeholder="City"
                 value={ciudad}
                 onChange={(e) => setCiudad(e.target.value)}
                 className="input"
@@ -384,7 +384,7 @@ export default function IdentitySection() {
               <input
                 id="email"
                 type="email"
-                placeholder="email@ejemplo.com"
+                placeholder="email@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="input"
@@ -393,7 +393,7 @@ export default function IdentitySection() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="telefono">Teléfono *</label>
+              <label htmlFor="telefono">Phone Number *</label>
               <input
                 id="telefono"
                 type="tel"
@@ -407,7 +407,7 @@ export default function IdentitySection() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="dni-front">DNI - Frente *</label>
+            <label htmlFor="dni-front">ID - Front *</label>
             <input
               id="dni-front"
               ref={frontInputRef}
@@ -419,7 +419,7 @@ export default function IdentitySection() {
             />
             {frontPreview && (
               <div className="image-preview">
-                <img src={frontPreview} alt="DNI Frente" />
+                <img src={frontPreview} alt="ID Front" />
                 <button
                   type="button"
                   onClick={() => {
@@ -436,7 +436,7 @@ export default function IdentitySection() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="dni-back">DNI - Dorso *</label>
+            <label htmlFor="dni-back">ID - Back *</label>
             <input
               id="dni-back"
               ref={backInputRef}
@@ -448,7 +448,7 @@ export default function IdentitySection() {
             />
             {backPreview && (
               <div className="image-preview">
-                <img src={backPreview} alt="DNI Dorso" />
+                <img src={backPreview} alt="ID Back" />
                 <button
                   type="button"
                   onClick={() => {
@@ -470,14 +470,14 @@ export default function IdentitySection() {
               disabled={loading || uploading || !dni.trim() || !nombre.trim() || !apellido.trim() || !fechaNacimiento || !direccion.trim() || !pais.trim() || !ciudad.trim() || !email.trim() || !telefono.trim() || !frontImage || !backImage}
               className="btn btn-primary"
             >
-              {uploading ? 'Subiendo datos a IPFS...' : loading ? 'Creando identidad...' : 'Crear Identidad'}
+              {uploading ? 'Uploading data to IPFS...' : loading ? 'Creating identity...' : 'Create Identity'}
             </button>
           </div>
 
           <p className="help-text">
-            💡 Todos tus datos sensibles se almacenarán en IPFS de forma segura.
-            Solo se guardará un hash (CID) en la blockchain para reducir costos de almacenamiento.
-            Tu wallet se vinculará de forma única con tu DNI.
+            💡 All your sensitive data will be securely stored on IPFS.
+            Only a hash (CID) will be saved on the blockchain to reduce storage costs.
+            Your wallet will be uniquely linked to your ID number.
           </p>
         </div>
       )}

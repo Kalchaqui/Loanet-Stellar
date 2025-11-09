@@ -274,16 +274,16 @@ export function useIdentityRegistry(kit: StellarWalletsKit | null, connected: bo
   const createIdentity = async (dni: string, ipfsCid: string) => {
     // Better error messages
     if (!kit) {
-      throw new Error('Wallet kit no está inicializado');
-    }
-    if (!connected) {
-      throw new Error('Wallet no está conectada');
-    }
-    if (!address) {
-      throw new Error('Dirección de wallet no disponible');
-    }
-    if (!IDENTITY_REGISTRY_CONTRACT || IDENTITY_REGISTRY_CONTRACT.trim() === '') {
-      throw new Error('ID del contrato IdentityRegistry no está configurado. Por favor configura VITE_IDENTITY_REGISTRY_CONTRACT en tu archivo .env');
+      throw new Error('Wallet kit is not initialized');
+        }
+        if (!connected) {
+          throw new Error('Wallet is not connected');
+        }
+        if (!address) {
+          throw new Error('Wallet address not available');
+        }
+        if (!IDENTITY_REGISTRY_CONTRACT || IDENTITY_REGISTRY_CONTRACT.trim() === '') {
+          throw new Error('IdentityRegistry contract ID is not configured. Please configure VITE_IDENTITY_REGISTRY_CONTRACT in your .env file');
     }
 
     setLoading(true);

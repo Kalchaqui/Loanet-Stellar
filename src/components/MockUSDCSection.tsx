@@ -15,7 +15,7 @@ export default function MockUSDCSection() {
   const handleFaucet = async () => {
     try {
       await faucet();
-      alert('¡Recibiste 1000 USDC de prueba!');
+      alert('You received 1000 test USDC!');
     } catch (error: any) {
       alert(`Error: ${error.message}`);
     }
@@ -26,22 +26,22 @@ export default function MockUSDCSection() {
   }
 
   return (
-    <LoanetSection title="🪙 Mock USDC (Pruebas)">
+    <LoanetSection title="🪙 Mock USDC (Testing)">
       <div className="mock-usdc-info">
         <div className="balance-display">
-          <span className="balance-label">Tu Balance:</span>
+          <span className="balance-label">Your Balance:</span>
           <span className="balance-value">${balance.toFixed(2)} USDC</span>
         </div>
         <div className="faucet-section">
           <p className="description">
-            Obtén tokens de prueba para usar en el sistema de préstamos.
+            Get test tokens to use in the lending system.
           </p>
           <button
             onClick={handleFaucet}
             disabled={loading}
             className="btn btn-faucet"
           >
-            {loading ? 'Obteniendo...' : '🚰 Obtener 1000 USDC'}
+            {loading ? 'Getting...' : '🚰 Get 1000 USDC'}
           </button>
         </div>
       </div>

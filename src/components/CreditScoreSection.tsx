@@ -15,7 +15,7 @@ export default function CreditScoreSection() {
   const handleInitialize = async () => {
     try {
       await initializeUser();
-      alert('✅ ¡Excelente! Tu scoring fue aprobado.\n\nTienes hasta $1000 USDC disponibles para solicitar préstamos.\n\nNota: Asegúrate de que el pool de liquidez tenga fondos suficientes antes de solicitar un préstamo.');
+      alert('✅ Excellent! Your credit score was approved.\n\nYou have up to $1000 USDC available to request loans.\n\nNote: Make sure the liquidity pool has sufficient funds before requesting a loan.');
     } catch (error: any) {
       alert(`Error: ${error.message}`);
     }
@@ -26,22 +26,22 @@ export default function CreditScoreSection() {
   }
 
   return (
-    <LoanetSection title="📊 Puntaje Crediticio">
+    <LoanetSection title="📊 Credit Score">
       {creditScore ? (
         <div className="credit-score-info">
           <div className="score-display">
             <div className="score-value">{creditScore.score}</div>
-            <div className="score-label">Puntos</div>
+            <div className="score-label">Points</div>
           </div>
           <div className="score-details">
             <div className="detail-item">
-              <span className="detail-label">Monto Máximo de Préstamo:</span>
+              <span className="detail-label">Maximum Loan Amount:</span>
               <span className="detail-value">${creditScore.maxLoanAmount.toLocaleString()}</span>
             </div>
             <div className="detail-item">
-              <span className="detail-label">Estado:</span>
+              <span className="detail-label">Status:</span>
               <span className={`detail-value ${creditScore.blacklisted ? 'blacklisted' : 'active'}`}>
-                {creditScore.blacklisted ? '🚫 En Lista Negra' : '✅ Activo'}
+                {creditScore.blacklisted ? '🚫 Blacklisted' : '✅ Active'}
               </span>
             </div>
           </div>
@@ -49,16 +49,16 @@ export default function CreditScoreSection() {
       ) : (
         <div className="credit-score-init">
           <p className="description">
-            Inicializa tu puntaje crediticio para comenzar a solicitar préstamos.
+            Initialize your credit score to start requesting loans.
             <br />
-            <strong>Nota:</strong> Al inicializar, obtendrás un score de 300 puntos, lo que te permite solicitar préstamos hasta $1000 USDC.
+            <strong>Note:</strong> When initializing, you will get a score of 300 points, which allows you to request loans up to $1000 USDC.
           </p>
           <button
             onClick={handleInitialize}
             disabled={loading}
             className="btn btn-primary"
           >
-            {loading ? 'Inicializando...' : 'Inicializar Score'}
+            {loading ? 'Initializing...' : 'Initialize Score'}
           </button>
         </div>
       )}

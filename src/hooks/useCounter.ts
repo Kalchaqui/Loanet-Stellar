@@ -98,7 +98,7 @@ export function useCounter(kit: StellarWalletsKit | null, connected: boolean) {
       await refresh();
     } catch (error) {
       console.error('Error incrementing counter:', error);
-      alert('Error al incrementar el contador. Asegúrate de que el contrato esté desplegado.');
+      alert('Error incrementing counter. Make sure the contract is deployed.');
     } finally {
       setLoading(false);
     }
@@ -111,7 +111,7 @@ export function useCounter(kit: StellarWalletsKit | null, connected: boolean) {
       await refresh();
     } catch (error) {
       console.error('Error decrementing counter:', error);
-      alert('Error al decrementar el contador. Asegúrate de que el contrato esté desplegado.');
+      alert('Error decrementing counter. Make sure the contract is deployed.');
     } finally {
       setLoading(false);
     }
@@ -124,7 +124,7 @@ export function useCounter(kit: StellarWalletsKit | null, connected: boolean) {
       await refresh();
     } catch (error) {
       console.error('Error resetting counter:', error);
-      alert('Error al resetear el contador. Asegúrate de que el contrato esté desplegado.');
+      alert('Error resetting counter. Make sure the contract is deployed.');
     } finally {
       setLoading(false);
     }

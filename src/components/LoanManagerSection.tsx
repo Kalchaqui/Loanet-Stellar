@@ -34,34 +34,34 @@ export default function LoanManagerSection() {
     const payments = parseInt(numPayments);
 
     if (isNaN(amount) || amount <= 0) {
-      alert('Por favor ingresa un monto válido');
+      alert('Please enter a valid amount');
       return;
     }
 
     if (payments < 1 || payments > 12) {
-      alert('El número de pagos debe estar entre 1 y 12');
+      alert('The number of payments must be between 1 and 12');
       return;
     }
 
     try {
       await requestLoan(amount * 1e6, payments); // Convert to smallest unit
       setLoanAmount('');
-      alert('Préstamo solicitado exitosamente');
+      alert('Loan requested successfully');
     } catch (error: any) {
-      const errorMsg = error?.message || 'Error desconocido';
+      const errorMsg = error?.message || 'Unknown error';
       alert(`Error: ${errorMsg}`);
     }
   };
 
   const handlePayInstallment = async () => {
     if (!loan) {
-      alert('No tienes un préstamo activo');
+      alert('You do not have an active loan');
       return;
     }
 
     try {
       await payInstallment();
-      alert('Pago realizado exitosamente');
+      alert('Payment completed successfully');
     } catch (error: any) {
       alert(`Error: ${error.message}`);
     }
@@ -72,39 +72,39 @@ export default function LoanManagerSection() {
   }
 
   return (
-    <LoanetSection title="💰 Mi Préstamo">
+    <LoanetSection title="💰 My Loan">
       {loan ? (
         <div className="loan-info">
           <div className="loan-header">
-            <h3>Préstamo Adquirido</h3>
+            <h3>Loan Acquired</h3>
             <div className="loan-amount-display">
               ${(loan.amount / 1e6).toFixed(2)} USDC
             </div>
             <div className="loan-installments">
-              A devolver en {loan.numPayments} {loan.numPayments === 1 ? 'cuota' : 'cuotas'}
+              To be repaid in {loan.numPayments} {loan.numPayments === 1 ? 'installment' : 'installments'}
             </div>
           </div>
 
           <div className="loan-details">
             <div className="detail-row">
-              <span className="detail-label">Monto Total (con intereses):</span>
+              <span className="detail-label">Total Amount (with interest):</span>
               <span className="detail-value">${(loan.totalAmount / 1e6).toFixed(2)}</span>
             </div>
             <div className="detail-row">
-              <span className="detail-label">Cuotas Pagadas:</span>
+              <span className="detail-label">Paid Installments:</span>
               <span className="detail-value">
                 {loan.paidPayments} / {loan.numPayments}
               </span>
             </div>
             <div className="detail-row">
-              <span className="detail-label">Monto por Cuota:</span>
+              <span className="detail-label">Amount per Installment:</span>
               <span className="detail-value">${(loan.paymentAmount / 1e6).toFixed(2)}</span>
             </div>
             {nextPaymentDate && (
               <div className="detail-row">
-                <span className="detail-label">Próxima Cuota Vence:</span>
+                <span className="detail-label">Next Installment Due:</span>
                 <span className="detail-value payment-due">
-                  {nextPaymentDate.toLocaleDateString('es-ES', { 
+                  {nextPaymentDate.toLocaleDateString('en-US', { 
                     day: '2-digit', 
                     month: '2-digit', 
                     year: 'numeric' 
@@ -113,9 +113,9 @@ export default function LoanManagerSection() {
               </div>
             )}
             <div className="detail-row">
-              <span className="detail-label">Estado:</span>
+              <span className="detail-label">Status:</span>
               <span className={`detail-value status-${loan.status.toLowerCase()}`}>
-                {loan.status === 'Active' ? '🟢 Activo' : loan.status === 'Repaid' ? '✅ Pagado' : '🔴 Vencido'}
+                {loan.status === 'Active' ? '🟢 Active' : loan.status === 'Repaid' ? '✅ Paid' : '🔴 Defaulted'}
               </span>
             </div>
           </div>
@@ -127,10 +127,10 @@ export default function LoanManagerSection() {
                 disabled={loading}
                 className="btn btn-primary"
               >
-                {loading ? 'Pagando...' : '💳 Pagar Cuota Ahora'}
+                {loading ? 'Paying...' : '💳 Pay Installment Now'}
               </button>
               <p className="early-payment-note">
-                Puedes pagar tu cuota antes de la fecha de vencimiento
+                You can pay your installment before the due date
               </p>
             </div>
           )}
@@ -138,11 +138,11 @@ export default function LoanManagerSection() {
       ) : (
         <div className="loan-request">
           <p className="description">
-            Solicita un préstamo basado en tu puntaje crediticio.
+            Request a loan based on your credit score.
           </p>
           <div className="request-form">
             <div className="form-group">
-              <label>Monto del Préstamo (USDC)</label>
+              <label>Loan Amount (USDC)</label>
               <input
                 type="number"
                 placeholder="0.00"
@@ -153,16 +153,16 @@ export default function LoanManagerSection() {
               />
             </div>
             <div className="form-group">
-              <label>Número de Pagos</label>
+              <label>Number of Payments</label>
               <select
                 value={numPayments}
                 onChange={(e) => setNumPayments(e.target.value)}
                 className="input"
               >
-                <option value="1">1 pago</option>
-                <option value="3">3 pagos</option>
-                <option value="6">6 pagos</option>
-                <option value="12">12 pagos</option>
+                <option value="1">1 payment</option>
+                <option value="3">3 payments</option>
+                <option value="6">6 payments</option>
+                <option value="12">12 payments</option>
               </select>
             </div>
             <button
@@ -170,7 +170,7 @@ export default function LoanManagerSection() {
               disabled={loading}
               className="btn btn-primary"
             >
-              {loading ? 'Solicitando...' : 'Solicitar Préstamo'}
+              {loading ? 'Requesting...' : 'Request Loan'}
             </button>
           </div>
         </div>

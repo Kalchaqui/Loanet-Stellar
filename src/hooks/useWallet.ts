@@ -79,7 +79,7 @@ export function useWallet() {
       console.log('Kit not initialized, initializing now...');
       currentKit = await initializeKit();
       if (!currentKit) {
-        alert('No se pudo inicializar el Wallet Kit. Por favor asegúrate de tener una extensión de wallet instalada.');
+        alert('Could not initialize Wallet Kit. Please make sure you have a wallet extension installed.');
         return;
       }
       setKit(currentKit);
@@ -108,7 +108,7 @@ export function useWallet() {
       });
     } catch (error) {
       console.error('Error opening wallet modal:', error);
-      alert('No se pudo abrir el modal de wallet. Asegúrate de tener una extensión de wallet instalada.');
+      alert('Could not open wallet modal. Make sure you have a wallet extension installed.');
     }
   }, [kit, initializeKit]);
 

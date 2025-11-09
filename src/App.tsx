@@ -13,7 +13,7 @@ function App() {
     <div className="app">
       <header className="app-header">
         <h1>🌟 Loanet</h1>
-        <p className="subtitle">Sistema de Préstamos Descentralizado en Stellar</p>
+        <p className="subtitle">Decentralized Lending System on Stellar</p>
       </header>
 
       <main className="app-main">
@@ -39,14 +39,14 @@ function App() {
         {!connected && (
           <div className="info-section">
             <div className="info-card">
-              <h3>🔐 Conecta tu Wallet</h3>
-              <p>Para usar el sistema de préstamos descentralizado, primero necesitas conectar tu wallet Stellar.</p>
+              <h3>🔐 Connect your Wallet</h3>
+              <p>To use the decentralized lending system, you first need to connect your Stellar wallet.</p>
               <ul>
-                <li>✅ Smart Contracts desplegados (Rust/WASM)</li>
-                <li>✅ Sistema de identidades verificadas</li>
-                <li>✅ Puntaje crediticio on-chain</li>
-                <li>✅ Gestor de préstamos</li>
-                <li>✅ Stellar Wallet Kit integrado</li>
+                <li>✅ Deployed Smart Contracts (Rust/WASM)</li>
+                <li>✅ Verified Identity System</li>
+                <li>✅ On-chain Credit Score</li>
+                <li>✅ Loan Manager</li>
+                <li>✅ Stellar Wallet Kit Integrated</li>
               </ul>
             </div>
           </div>
@@ -54,7 +54,7 @@ function App() {
       </main>
 
       <footer className="app-footer">
-        <p>Loanet - Sistema de Préstamos Descentralizado en Stellar</p>
+        <p>Loanet - Decentralized Lending System on Stellar</p>
       </footer>
     </div>
   );

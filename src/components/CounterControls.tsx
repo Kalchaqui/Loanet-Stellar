@@ -24,14 +24,14 @@ const CounterControls: React.FC<CounterControlsProps> = ({
           disabled={loading}
           className="control-btn decrement-btn"
         >
-          ➖ Decrementar
+          ➖ Decrement
         </button>
         <button
           onClick={onIncrement}
           disabled={loading}
           className="control-btn increment-btn"
         >
-          ➕ Incrementar
+          ➕ Increment
         </button>
       </div>
       <div className="secondary-buttons">
@@ -40,14 +40,14 @@ const CounterControls: React.FC<CounterControlsProps> = ({
           disabled={loading}
           className="control-btn reset-btn"
         >
-          🔄 Resetear
+          🔄 Reset
         </button>
         <button
           onClick={onRefresh}
           disabled={loading}
           className="control-btn refresh-btn"
         >
-          🔃 Actualizar
+          🔃 Refresh
         </button>
       </div>
     </div>

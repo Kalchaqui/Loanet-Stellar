@@ -32,18 +32,18 @@ const WalletButton: React.FC<WalletButtonProps> = ({
             rel="noopener noreferrer"
             className="wallet-link"
           >
-            Instalar Freighter
+            Install Freighter
           </a>
         </div>
       )}
       {connected ? (
         <div className="wallet-info">
           <div className="wallet-address">
-            <span className="address-label">Conectado:</span>
+            <span className="address-label">Connected:</span>
             <span className="address-value">{formatAddress(address || '')}</span>
           </div>
           <button onClick={onDisconnect} className="wallet-btn disconnect-btn">
-            Desconectar
+            Disconnect
           </button>
         </div>
       ) : (
@@ -52,7 +52,7 @@ const WalletButton: React.FC<WalletButtonProps> = ({
           className="wallet-btn connect-btn"
           disabled={!!initError}
         >
-          🔗 Conectar Wallet
+          🔗 Connect Wallet
         </button>
       )}
     </div>

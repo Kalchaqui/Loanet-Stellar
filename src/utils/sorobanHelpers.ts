@@ -221,7 +221,7 @@ export async function callSorobanContract(
           });
           
           if (!result || (typeof result === 'string' && result.length === 0)) {
-            throw new Error('La transacción fue rechazada o cancelada');
+            throw new Error('Transaction was rejected or cancelled');
           }
           
           signedTxXdr = result;
@@ -230,7 +230,7 @@ export async function callSorobanContract(
           const errorMsg = error?.message || error?.toString() || '';
           console.error('Freighter API signTransaction error:', errorMsg);
           if (errorMsg.toLowerCase().includes('rejected') || errorMsg.toLowerCase().includes('user rejected')) {
-            throw new Error('La transacción fue rechazada. Por favor acepta la transacción en Freighter para continuar.');
+            throw new Error('Transaction was rejected. Please accept the transaction in Freighter to continue.');
           }
           // Fall through to try signTx method - don't set signedTxXdr so it tries next method
           console.log('Freighter API failed, trying signTx method...');
@@ -288,7 +288,7 @@ export async function callSorobanContract(
         }
 
         if (!signedTxXdr) {
-          throw new Error('La transacción no fue firmada correctamente.');
+          throw new Error('Transaction was not signed correctly.');
         }
 
         console.log('Transaction signed successfully with signTx');
@@ -296,7 +296,7 @@ export async function callSorobanContract(
         const errorMsg = error?.message || error?.toString() || '';
         console.error('signTx error:', errorMsg);
         if (errorMsg.toLowerCase().includes('rejected') || errorMsg.toLowerCase().includes('user rejected')) {
-          throw new Error('La transacción fue rechazada. Por favor acepta la transacción en tu wallet para continuar.');
+          throw new Error('Transaction was rejected. Please accept the transaction in your wallet to continue.');
         }
         throw error;
       }
@@ -323,7 +323,7 @@ export async function callSorobanContract(
         }
 
         if (!signedTxXdr) {
-          throw new Error('La transacción no fue firmada correctamente.');
+          throw new Error('Transaction was not signed correctly.');
         }
 
         console.log('Transaction signed successfully with signBlob');
@@ -331,7 +331,7 @@ export async function callSorobanContract(
         const errorMsg = error?.message || error?.toString() || '';
         console.error('signBlob error:', errorMsg);
         if (errorMsg.toLowerCase().includes('rejected') || errorMsg.toLowerCase().includes('user rejected')) {
-          throw new Error('La transacción fue rechazada. Por favor acepta la transacción en tu wallet para continuar.');
+          throw new Error('Transaction was rejected. Please accept the transaction in your wallet to continue.');
         }
         throw error;
       }
@@ -343,16 +343,16 @@ export async function callSorobanContract(
     
     // Final validation
     if (!signedTxXdr || (typeof signedTxXdr === 'string' && signedTxXdr.length === 0)) {
-      throw new Error('La transacción no fue firmada correctamente. Por favor intenta de nuevo.');
+      throw new Error('Transaction was not signed correctly. Please try again.');
     }
   } catch (error: any) {
     console.error('Error signing transaction:', error);
     // Provide user-friendly error message
-    const errorMessage = error?.message || error?.toString() || 'Error desconocido al firmar la transacción';
+    const errorMessage = error?.message || error?.toString() || 'Unknown error signing transaction';
     
     // Check if it's a rejection error that wasn't caught earlier
     if (errorMessage.toLowerCase().includes('rejected') || errorMessage.toLowerCase().includes('user rejected')) {
-      throw new Error('La transacción fue rechazada. Por favor acepta la transacción en tu wallet para continuar.');
+      throw new Error('Transaction was rejected. Please accept the transaction in your wallet to continue.');
     }
     
     throw new Error(`Failed to sign transaction: ${errorMessage}`);

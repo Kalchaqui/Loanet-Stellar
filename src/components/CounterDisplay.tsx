@@ -12,12 +12,12 @@ const CounterDisplay: React.FC<CounterDisplayProps> = ({ value, loading }) => {
       {loading ? (
         <div className="loading-spinner">
           <div className="spinner"></div>
-          <p>Cargando...</p>
+          <p>Loading...</p>
         </div>
       ) : (
         <>
           <div className="counter-value">{value}</div>
-          <p className="counter-label">Valor actual del contador</p>
+          <p className="counter-label">Current counter value</p>
         </>
       )}
     </div>
