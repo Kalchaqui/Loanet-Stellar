@@ -10,9 +10,17 @@
 
 A modern decentralized application (dApp) for peer-to-peer lending built on the Stellar network with Soroban smart contracts.
 
-[Features](#-main-features) • [Technologies](#-technologies) • [Installation](#-installation) • [Usage](#-usage)
+**[🌐 Live Demo](https://loanett.vercel.app/)** • [Features](#-main-features) • [Technologies](#-technologies) • [Installation](#-installation) • [Usage](#-usage)
 
 </div>
+
+---
+
+## 🌐 Live Demo
+
+**Try Loanet now:** [https://loanett.vercel.app/](https://loanett.vercel.app/)
+
+The application is deployed on Vercel and connected to the Stellar testnet. Connect your wallet to start using the lending platform!
 
 ---
 
