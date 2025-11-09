@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "contract:build": "cd contracts && cargo build --target wasm32-unknown-unknown --release",
+    "contract:build": "stellar scaffold build",
+    "contract:watch": "stellar scaffold watch",
     "contract:deploy": "npm run contract:build && echo 'Contract built. Deploy using Stellar CLI or Horizon API'"
   },
   "dependencies": {

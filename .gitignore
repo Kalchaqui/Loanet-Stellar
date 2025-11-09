@@ -27,8 +27,14 @@ dist-ssr
 target/
 **/*.rs.bk
 Cargo.lock
+contracts/target/
 
 # Environment
 .env
 .env.local
+
+# Backup files
+*.backup
+*.bak
+*.old
 

@@ -79,6 +79,13 @@ The platform stores sensitive personal data off-chain on IPFS (InterPlanetary Fi
 
 ## 🛠 Technologies
 
+### Development Framework
+- **Scaffold Stellar**: Full-stack development toolkit for Stellar dApps
+  - CLI tools for contract building and deployment
+  - Environment management via `environments.toml`
+  - TypeScript client generation
+  - Hot reloading with `stellar scaffold watch`
+
 ### Smart Contracts
 - **Rust**: Smart contracts written in Rust for performance and safety
 - **Soroban SDK**: Stellar's smart contract platform SDK
@@ -88,7 +95,6 @@ The platform stores sensitive personal data off-chain on IPFS (InterPlanetary Fi
 - **React**: Modern UI framework with hooks and context
 - **TypeScript**: Type-safe JavaScript for better development experience
 - **Vite**: Fast build tool and development server
-- **Tailwind CSS**: Utility-first CSS framework (if used)
 
 ### Blockchain
 - **Stellar Network**: Fast, low-cost blockchain for payments
@@ -98,7 +104,7 @@ The platform stores sensitive personal data off-chain on IPFS (InterPlanetary Fi
 ### Tools & Libraries
 - **Stellar Wallet Kit**: Multi-wallet integration library
 - **Stellar SDK**: JavaScript SDK for Stellar network
-- **Soroban CLI**: Command-line tools for contract deployment
+- **Stellar CLI**: Command-line tools including Scaffold Stellar
 
 ---
 
@@ -108,7 +114,7 @@ The platform stores sensitive personal data off-chain on IPFS (InterPlanetary Fi
 
 - **Node.js** 18+ and npm
 - **Rust** and Cargo (latest stable version)
-- **Soroban CLI** (for contract deployment)
+- **Stellar CLI** (includes Scaffold Stellar CLI)
 - **Git** (for cloning the repository)
 
 ### Step 1: Clone the Repository
@@ -118,21 +124,33 @@ git clone https://github.com/Kalchaqui/Loanet-Stellar.git
 cd Loanet-Stellar
 ```
 
-### Step 2: Install Frontend Dependencies
+### Step 2: Install Scaffold Stellar CLI (if not already installed)
+
+```bash
+cargo install --locked stellar-scaffold-cli
+```
+
+### Step 3: Install Frontend Dependencies
 
 ```bash
 npm install
 ```
 
-### Step 3: Build Smart Contracts
+### Step 4: Build Smart Contracts with Scaffold
 
 ```bash
-cd contracts
-cargo build --target wasm32-unknown-unknown --release
-cd ..
+# Set environment to testing (testnet)
+$env:STELLAR_SCAFFOLD_ENV="testing"  # PowerShell
+# or
+export STELLAR_SCAFFOLD_ENV="testing"  # Bash
+
+# Build contracts using Scaffold
+npm run contract:build
+# or directly
+stellar scaffold build
 ```
 
-### Step 4: Configure Environment Variables
+### Step 5: Configure Environment Variables
 
 Create a `.env` file in the root directory:
 
@@ -144,9 +162,28 @@ VITE_MOCK_USDC_CONTRACT=<YOUR_MOCK_USDC_CONTRACT_ID>
 VITE_LOAN_MANAGER_CONTRACT=<YOUR_LOAN_MANAGER_CONTRACT_ID>
 ```
 
-### Step 5: Deploy Smart Contracts
+**Note:** The `environments.toml` file is also configured with all contract IDs for Scaffold Stellar. You can update it directly or use the `.env` file.
 
-Follow the deployment guide in `DEPLOY_CONTRACTS.md` to deploy all contracts to the Stellar testnet.
+### Step 6: Deploy Smart Contracts
+
+Deploy contracts using the Stellar CLI:
+
+```bash
+# Deploy a contract
+soroban contract deploy \
+  --wasm target/wasm32-unknown-unknown/release/<contract_name>.wasm \
+  --source <YOUR_SECRET_KEY> \
+  --network testnet
+
+# Initialize the contract (if needed)
+soroban contract invoke \
+  --id <CONTRACT_ID> \
+  --source <YOUR_SECRET_KEY> \
+  --network testnet \
+  -- <function_name> <args>
+```
+
+For detailed deployment instructions, refer to the [Stellar Documentation](https://developers.stellar.org/docs/smart-contracts/getting-started/deploying-contracts).
 
 ---
 
@@ -296,12 +333,16 @@ See `DEPLOY_CONTRACTS.md` for detailed deployment instructions.
 ### Quick Deploy Commands
 
 ```bash
-# Build contract
-cargo build --target wasm32-unknown-unknown --release
+# Build contract using Scaffold
+$env:STELLAR_SCAFFOLD_ENV="testing"  # PowerShell
+stellar scaffold build
+
+# Or use npm script
+npm run contract:build
 
 # Deploy contract
 soroban contract deploy \
-  --wasm target/wasm32-unknown-unknown/release/loanet_contract.wasm \
+  --wasm target/stellar/local/loanet_contract.wasm \
   --source loanet-key \
   --network testnet
 
@@ -311,6 +352,19 @@ soroban contract invoke \
   --source loanet-key \
   --network testnet \
   -- initialize --owner <YOUR_ADDRESS>
+```
+
+### Scaffold Stellar Commands
+
+```bash
+# Build contracts
+stellar scaffold build
+
+# Watch mode (hot reloading)
+stellar scaffold watch
+
+# Update environment variable
+stellar scaffold update-env <VAR_NAME> <VALUE>
 ```
 
 ---

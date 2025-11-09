@@ -295,11 +295,10 @@ mod test {
 
         // Create addresses
         let credit_scoring = Address::generate(&env);
-        let lending_pool = Address::generate(&env);
         let token = Address::generate(&env);
         
-        // Initialize
-        client.initialize(&credit_scoring, &lending_pool, &token, &500);
+        // Initialize (lending_pool was removed from the system)
+        client.initialize(&credit_scoring, &token, &500);
     }
 }
 

@@ -1,32 +1,54 @@
-# Loanet Configuration
+# Scaffold Stellar Environment Configuration
+# This file configures different environments and maps contract names to their deployed contract IDs
 
-## Environment Variables
+[envs.testing]
+network_passphrase = "Test SDF Network ; September 2015"
+rpc_url = "https://soroban-testnet.stellar.org"
+network = "testnet"
 
-Create a `.env` file in the root directory with the following variables:
+# Contract configurations for testing (testnet)
+[envs.testing.contracts.identity_registry]
+name = "identity_registry"
+wasm_hash = ""
+contract_id = "CCJQROO6XTCHGN6CM5GDQS3G6RRWNCHO6BVO5ZKXN4FVV7BYCFVKIXZK"
 
-```
-VITE_STELLAR_NETWORK=testnet
+[envs.testing.contracts.credit_scoring]
+name = "credit_scoring"
+wasm_hash = ""
+contract_id = "CABUC5EJGNT3QJVZPVX3QU5JPKCOBPUO6KXLGLQNCK3HZSY4YKJG7EDN"
 
-# Contract IDs (after deployment)
-VITE_IDENTITY_REGISTRY_CONTRACT=YOUR_IDENTITY_REGISTRY_CONTRACT_ID_HERE
-VITE_CREDIT_SCORING_CONTRACT=YOUR_CREDIT_SCORING_CONTRACT_ID_HERE
-VITE_LENDING_POOL_CONTRACT=YOUR_LENDING_POOL_CONTRACT_ID_HERE
-VITE_LOAN_MANAGER_CONTRACT=YOUR_LOAN_MANAGER_CONTRACT_ID_HERE
-VITE_MOCK_USDC_CONTRACT=YOUR_MOCK_USDC_CONTRACT_ID_HERE
-```
+[envs.testing.contracts.mock_usdc]
+name = "mock_usdc"
+wasm_hash = ""
+contract_id = "CBUXR4XUKUDH5TBVLXU7ACVNSZBJL4MQDAPG2TVFCEOG3Q7BB4GPJM77"
 
-## Network Options
+[envs.testing.contracts.loan_manager]
+name = "loan_manager"
+wasm_hash = ""
+contract_id = "CCHGOWY6DLTS3VDALNIYAVV7GZYCNECPDYVLDGGQLIMIRMD7A6KG7EG5"
 
-- `testnet` - Stellar Testnet
-- `public` - Stellar Mainnet
+[envs.production]
+network_passphrase = "Public Global Stellar Network ; September 2015"
+rpc_url = "https://rpc.stellar.org"
+network = "public"
 
-## Contract Deployment
+# Contract configurations for production (mainnet) - to be filled when deploying to mainnet
+[envs.production.contracts.identity_registry]
+name = "identity_registry"
+wasm_hash = ""
+contract_id = ""
 
-After building the contract, deploy it using Stellar CLI:
+[envs.production.contracts.credit_scoring]
+name = "credit_scoring"
+wasm_hash = ""
+contract_id = ""
 
-```bash
-soroban deploy --wasm target/wasm32-unknown-unknown/release/stellar_counter.wasm --source YOUR_SECRET_KEY --network testnet
-```
+[envs.production.contracts.mock_usdc]
+name = "mock_usdc"
+wasm_hash = ""
+contract_id = ""
 
-Replace `YOUR_SECRET_KEY` with your secret key and note the contract ID returned.
-
+[envs.production.contracts.loan_manager]
+name = "loan_manager"
+wasm_hash = ""
+contract_id = ""
