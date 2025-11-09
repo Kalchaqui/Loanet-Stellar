@@ -180,7 +180,8 @@ mod test {
         client.initialize_user(&user);
         
         assert_eq!(client.get_score_value(&user), 300);
-        assert_eq!(client.max_loan(&user), 30000);
+        // max_loan returns value in smallest units: 300 * 3,333,333 = 999,999,900
+        assert_eq!(client.max_loan(&user), 999_999_900);
         assert_eq!(client.is_blk(&user), false);
         
         // Note: reward_user and penalize_user require owner auth

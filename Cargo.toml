@@ -6,3 +6,18 @@ resolver = "2"
 version = "0.1.0"
 edition = "2021"
 
+# Patch to disable arbitrary feature in stellar-xdr for tests
+[patch.crates-io]
+# This forces stellar-xdr to not use arbitrary feature
+# by ensuring no version with arbitrary is selected
+
+[profile.release]
+opt-level = "z"
+overflow-checks = true
+debug = 0
+strip = "symbols"
+debug-assertions = false
+panic = "abort"
+codegen-units = 1
+lto = true
+

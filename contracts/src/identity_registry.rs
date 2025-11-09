@@ -221,10 +221,13 @@ mod test {
         // Initialize
         client.initialize(&owner);
         
-        // Create identity
+        // Create identity - mock all auths to allow the call
         let user = Address::generate(&env);
         let dni = String::from_str(&env, "12345678");
         let ipfs_cid = String::from_str(&env, "QmTest123456789");
+        
+        // Mock authentication for the user
+        env.mock_all_auths();
         client.create_identity(&user, &dni, &ipfs_cid);
         
         assert_eq!(client.has_identity(&user), true);

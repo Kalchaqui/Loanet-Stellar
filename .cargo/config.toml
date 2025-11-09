@@ -1,0 +1,5 @@
+﻿[build]
+rustflags = []
+
+[target.'cfg(test)']
+rustflags = ["--cfg", "feature=\"no-arbitrary\""]

@@ -327,10 +327,15 @@ npm test
 
 ### Testing Smart Contracts
 
+**Run unit tests:**
+
 ```bash
-cd contracts
-cargo test
+cargo test --package loanet-contract --lib
 ```
+
+All tests should pass. For integration testing through the frontend, see [INTEGRATION_TESTING.md](./INTEGRATION_TESTING.md).
+
+For more details, see [TESTING.md](./TESTING.md).
 
 ---
 
