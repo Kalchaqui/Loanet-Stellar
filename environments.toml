@@ -1,0 +1,32 @@
+# Loanet Configuration
+
+## Environment Variables
+
+Create a `.env` file in the root directory with the following variables:
+
+```
+VITE_STELLAR_NETWORK=testnet
+
+# Contract IDs (after deployment)
+VITE_IDENTITY_REGISTRY_CONTRACT=YOUR_IDENTITY_REGISTRY_CONTRACT_ID_HERE
+VITE_CREDIT_SCORING_CONTRACT=YOUR_CREDIT_SCORING_CONTRACT_ID_HERE
+VITE_LENDING_POOL_CONTRACT=YOUR_LENDING_POOL_CONTRACT_ID_HERE
+VITE_LOAN_MANAGER_CONTRACT=YOUR_LOAN_MANAGER_CONTRACT_ID_HERE
+VITE_MOCK_USDC_CONTRACT=YOUR_MOCK_USDC_CONTRACT_ID_HERE
+```
+
+## Network Options
+
+- `testnet` - Stellar Testnet
+- `public` - Stellar Mainnet
+
+## Contract Deployment
+
+After building the contract, deploy it using Stellar CLI:
+
+```bash
+soroban deploy --wasm target/wasm32-unknown-unknown/release/stellar_counter.wasm --source YOUR_SECRET_KEY --network testnet
+```
+
+Replace `YOUR_SECRET_KEY` with your secret key and note the contract ID returned.
+
