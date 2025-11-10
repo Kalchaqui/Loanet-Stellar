@@ -1,4 +1,9 @@
-# 🚀 Loanet - Decentralized Lending System
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a26a6e70-688f-41cb-8390-211cbf236ed1" alt="Logoloanetstellar" width="400"/><br/>
+</p>
+
+
+<h1 align="center">🚀 Loanet - Decentralized Lending System</h1>
 
 <div align="center">
 
@@ -29,6 +34,7 @@ The application is deployed on Vercel and connected to the Stellar testnet. Conn
 Loanet is a decentralized lending platform created to demonstrate the power of Stellar blockchain and Soroban smart contracts. The application implements a complete lending system with digital identity verification, credit scoring, and automated loan management. Users can register their identity, obtain a credit score, request loans based on their creditworthiness, and manage repayments—all secured by blockchain technology.
 
 The platform stores sensitive personal data off-chain on IPFS (InterPlanetary File System) while maintaining only cryptographic hashes on-chain, ensuring privacy and reducing storage costs. Smart contracts handle all lending logic, credit scoring, and payment processing automatically.
+At the core of Loanet are four modular smart contracts deployed on Soroban, Stellar's Rust-based smart contract platform, created with Scaffold. The contracts are: Identity Registry, Credit Scoring, Loan Manager, and Mock USDC (for simulation). Each contract has its test carried out.
 
 ---
 
@@ -164,13 +170,30 @@ Create a `.env` file in the root directory:
 
 ```env
 VITE_STELLAR_NETWORK=testnet
-VITE_IDENTITY_REGISTRY_CONTRACT=<YOUR_IDENTITY_REGISTRY_CONTRACT_ID>
-VITE_CREDIT_SCORING_CONTRACT=<YOUR_CREDIT_SCORING_CONTRACT_ID>
-VITE_MOCK_USDC_CONTRACT=<YOUR_MOCK_USDC_CONTRACT_ID>
-VITE_LOAN_MANAGER_CONTRACT=<YOUR_LOAN_MANAGER_CONTRACT_ID>
+VITE_IDENTITY_REGISTRY_CONTRACT=CCJQROO6XTCHGN6CM5GDQS3G6RRWNCHO6BVO5ZKXN4FVV7BYCFVKIXZK
+VITE_CREDIT_SCORING_CONTRACT=CABUC5EJGNT3QJVZPVX3QU5JPKCOBPUO6KXLGLQNCK3HZSY4YKJG7EDN
+VITE_MOCK_USDC_CONTRACT=CCHGOWY6DLTS3VDALNIYAVV7GZYCNECPDYVLDGGQLIMIRMD7A6KG7EG5
+VITE_LOAN_MANAGER_CONTRACT=CBUXR4XUKUDH5TBVLXU7ACVNSZBJL4MQDAPG2TVFCEOG3Q7BB4GPJM77
 ```
+# 🔗 Contract Links - Stellar Testnet
 
-**Note:** The `environments.toml` file is also configured with all contract IDs for Scaffold Stellar. You can update it directly or use the `.env` file.
+Click on the links below to view the deployed contracts on Stellar testnet.
+
+## 📋 Contract Addresses
+
+🔗### Identity Registry
+https://stellar.expert/explorer/testnet/contract/CCJQROO6XTCHGN6CM5GDQS3G6RRWNCHO6BVO5ZKXN4FVV7BYCFVKIXZK
+
+🔗### CREDIT SCORING
+https://stellar.expert/explorer/testnet/contract/CABUC5EJGNT3QJVZPVX3QU5JPKCOBPUO6KXLGLQNCK3HZSY4YKJG7EDN
+
+🔗### MOCK USDC
+https://stellar.expert/explorer/testnet/contract/CCHGOWY6DLTS3VDALNIYAVV7GZYCNECPDYVLDGGQLIMIRMD7A6KG7EG5
+
+🔗### LOAN MANAGER
+https://stellar.expert/explorer/testnet/contract/CBUXR4XUKUDH5TBVLXU7ACVNSZBJL4MQDAPG2TVFCEOG3Q7BB4GPJM77
+
+---
 
 ### Step 6: Deploy Smart Contracts
 
@@ -319,23 +342,21 @@ Manages loan lifecycle from request to repayment.
 
 ## 🧪 Testing
 
-### Running Frontend Tests
-
-```bash
-npm test
-```
-
 ### Testing Smart Contracts
 
 **Run unit tests:**
 
 ```bash
-cargo test --package loanet-contract --lib
+cargo test
 ```
 
-All tests should pass. For integration testing through the frontend, see [INTEGRATION_TESTING.md](./INTEGRATION_TESTING.md).
+All tests should pass: 
+test loan_manager::test::test_loan_manager_init ... ok
+test credit_scoring::test::test_credit_scoring ... ok
+test identity_registry::test::test_identity_registry ... ok
+test mock_usdc::test::test_mock_usdc ... ok
 
-For more details, see [TESTING.md](./TESTING.md).
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
 
 ---
 
@@ -403,22 +424,13 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 🙏 Acknowledgments
 
 - Stellar Development Foundation for the amazing blockchain platform
-- Soroban team for the smart contract platform
-- Stellar Wallet Kit developers for wallet integration
-- IPFS team for decentralized storage solutions
-
----
-
-## 📧 Contact
-
-For questions or support, please open an issue on GitHub.
 
 ---
 
 <div align="center">
 
-**Built with ❤️ on Stellar**
+**Built with ❤️ on Stellar Scaffold**
 
-[⬆ Back to Top](#-loanet---decentralized-lending-system)
+Diego Raúl Barrionuevo
 
 </div>
